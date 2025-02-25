@@ -1,0 +1,1 @@
+export const USE_SUPABASE = true // To use axios, change it to false
