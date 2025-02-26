@@ -1,7 +1,9 @@
 import axios from 'axios';
 import React, { useState } from "react";
 import supabase from '../supabase';
-const USE_SUPABASE = true;
+
+
+
 
 const TableList = ({ handleOpen, tableData, setTableData, searchTerm }) => {
   const [error, setError] = useState(null);
@@ -18,7 +20,7 @@ const TableList = ({ handleOpen, tableData, setTableData, searchTerm }) => {
     
     if (confirmDelete) {
       try {
-        if (USE_SUPABASE) {
+        if (import.meta.env.VITE_USE_SUPABASE === 'true') {
           const { error } = await supabase
             .from('clients_table')
             .delete()
@@ -42,7 +44,7 @@ const TableList = ({ handleOpen, tableData, setTableData, searchTerm }) => {
 
           
         } else {
-          await axios.delete(`http://localhost:3001/api/clients/${id}`);
+          await axios.delete(`https://crud-react-node.onrender.com/api/clients/${id}`);
           setTableData((prevData) => prevData.filter(client => client.id !== id));
         }
       } catch (err) {

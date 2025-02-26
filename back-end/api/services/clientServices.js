@@ -1,7 +1,9 @@
 // Importando a query (consulta) do db.js para realizar consultas no banco de dados
 import { query } from "../db.js";
 import supabase from "../supabase.js";
-import { USE_SUPABASE } from "../config.js";
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 
 // Função assíncrona para buscar todos os clientes no banco de dados
@@ -9,7 +11,7 @@ export const getClients = async() => {
 
     try{ 
 
-    if (USE_SUPABASE){
+    if (process.env.USE_SUPABASE === 'true'){
     const {data, error} = await supabase
     .from("clients_table")
     .select("*")
@@ -39,7 +41,7 @@ export const createClient = async(clientData) => {
 
     try {
 
-        if(USE_SUPABASE){
+        if(process.env.USE_SUPABASE === 'true'){
         const { data : existingClient, error: checkError } = await supabase
         .from("clients_table")
         .select("*")
@@ -95,7 +97,7 @@ export const updateClient = async(clientId, clientData) => {
 
     try {
 
-        if (USE_SUPABASE) {
+        if (process.env.USE_SUPABASE === 'true') {
 
        
        const { data: existingClients, error: checkError } = await supabase
@@ -152,7 +154,7 @@ export const updateClient = async(clientId, clientData) => {
 export const deleteClient = async (clientId) => {
     try {
 
-        if (USE_SUPABASE) {
+        if (process.env.USE_SUPABASE === 'true') {
         const {error} = await supabase
 
         .from("clients_table")
@@ -192,7 +194,7 @@ export const deleteClient = async (clientId) => {
 export const searchClients = async (searchTerm) => {
     try{
 
-    if(USE_SUPABASE){
+    if(process.env.USE_SUPABASE === 'true'){
         const { data, error } = await supabase
         .from("clients_table")
         .select("*")

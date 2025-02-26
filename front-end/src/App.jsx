@@ -8,7 +8,9 @@ import supabase from "./supabase";
 
 
 
-const USE_SUPABASE = true;
+
+
+
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,7 +24,7 @@ function App() {
   
   const fetchClients = async () => {
     try {
-      if (USE_SUPABASE) {
+      if (import.meta.env.VITE_USE_SUPABASE === 'true') {
         const { data, error } = await supabase
           .from('clients_table')
           .select('*')
@@ -32,7 +34,7 @@ function App() {
         setTableData(data)
 
       } else {
-        const response = await axios.get('http://localhost:3001/api/clients')
+        const response = await axios.get('https://crud-react-node.onrender.com/api/clients')
         setTableData(response.data)
 
       }
@@ -59,7 +61,7 @@ function App() {
  const handleSubmit = async (newClientData) => {
   if (modalMode === "add") {
     try {
-      if (USE_SUPABASE) {
+      if (import.meta.env.VITE_USE_SUPABASE === 'true') {
         const { data, error } = await supabase
           .from('clients_table') // Tabela no Supabase
           .insert([newClientData]) // Adiciona o novo cliente
@@ -75,7 +77,7 @@ function App() {
         }
       } else {
 
-        const response = await axios.post('http://localhost:3001/api/clients', newClientData);
+        const response = await axios.post('https://crud-react-node.onrender.com/api/clients', newClientData);
         console.log("Client added: ", response.data);
         setTableData((prevData) => [...prevData, response.data]);
       }
@@ -92,7 +94,7 @@ function App() {
    
 
     try {
-      if (USE_SUPABASE) {
+      if (import.meta.env.VITE_USE_SUPABASE === 'true') {
         const { data, error } = await supabase
           .from('clients_table')
           .update(newClientData)
@@ -105,7 +107,7 @@ function App() {
           prevData.map((client) => (client.id === clientData.id ? data[0] : client))
         );
       } else {
-        const response = await axios.put(`http://localhost:3001/api/clients/${clientData.id}`, newClientData);
+        const response = await axios.put(`https://crud-react-node.onrender.com/api/clients/${clientData.id}`, newClientData);
         console.log("Client updated: ", response.data);
         setTableData((prevData) =>
           prevData.map((client) => (client.id === clientData.id ? response.data : client))
@@ -128,7 +130,7 @@ const handleDeleteAll = async () => {
 
   if(confirmDelete){
   try{
-    if(USE_SUPABASE){
+    if(import.meta.env.VITE_USE_SUPABASE === 'true'){
     const {  error } = await supabase
     .from ("clients_table")
     .delete()
@@ -157,7 +159,7 @@ const handleDeleteAll = async () => {
     }
           
     } else{
-      await axios.delete("http://localhost:3001/api/clients")
+      await axios.delete("https://crud-react-node.onrender.com/api/clients")
       setTableData([])
     }
     }catch(err){
