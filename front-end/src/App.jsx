@@ -5,6 +5,7 @@ import ModalForm from "./components/ModalForm";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import supabase from "./supabase";
+import ScrollButons from "./components/ScrollButons";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -173,6 +174,10 @@ function App() {
         onClose={() => setIsOpen(false)}
         mode={modalMode} clientData={clientData}
       />
+
+      <ScrollButons
+      ScrollButons= {ScrollButons}
+      /> 
 
     </>
   );
