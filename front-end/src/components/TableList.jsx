@@ -1,9 +1,5 @@
-import axios from 'axios';
 import React, { useState } from "react";
 import supabase from '../supabase';
-
-
-
 
 const TableList = ({ handleOpen, tableData, setTableData, searchTerm }) => {
   const [error, setError] = useState(null);
@@ -42,10 +38,10 @@ const TableList = ({ handleOpen, tableData, setTableData, searchTerm }) => {
     
          }
 
-          
         } else {
-          await axios.delete(`https://crud-react-node.onrender.com/api/clients/${id}`);
-          setTableData((prevData) => prevData.filter(client => client.id !== id));
+          // Axios logic commented out
+          // await axios.delete(`https://crud-react-node.onrender.com/api/clients/${id}`);
+          // setTableData((prevData) => prevData.filter(client => client.id !== id));
         }
       } catch (err) {
         setError(err.message);

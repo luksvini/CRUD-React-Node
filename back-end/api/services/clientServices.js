@@ -1,5 +1,5 @@
 // Importando a query (consulta) do db.js para realizar consultas no banco de dados
-import { query } from "../db.js";
+// import { query } from "../db.js"; 
 import supabase from "../supabase.js";
 import dotenv from 'dotenv';
 
@@ -20,10 +20,10 @@ export const getClients = async() => {
 
     } else {
     // Executa a consulta SQL para selecionar todos os registros da tabela 'clients_table'
-    const {rows} = await query('SELECT * FROM clients_table')
+    // const {rows} = await query('SELECT * FROM clients_table')
 
     // Retorna todos os clientes encontrados
-    return rows
+    // return rows
     } 
     
     } catch (err) {
@@ -31,7 +31,7 @@ export const getClients = async() => {
     
     }
 
-    }
+}
 
 
 
@@ -62,28 +62,26 @@ export const createClient = async(clientData) => {
         } else{
 
          // Verifica se o email já existe antes de tentar criar o cliente
-        const { rows: existingClient } = await query(
-            `SELECT * FROM clients_table WHERE email = $1`,
-            [email]
-        );
+        // const { rows: existingClient } = await query(
+        //     `SELECT * FROM clients_table WHERE email = $1`,
+        //     [email]
+        // );
 
-        if (existingClient.length > 0) {
-            // Se já existir um cliente com esse email, retorne uma mensagem de erro
-            throw new Error("Email already exists.");
-        }
+        // if (existingClient.length > 0) {
+        //     // Se já existir um cliente com esse email, retorne uma mensagem de erro
+        //     throw new Error("Email already exists.");
+        // }
 
         // Executa a query para inserir o novo cliente
-        const { rows } = await query(
-            `INSERT INTO clients_table (name, email, job, rate, isactive)
-            VALUES ($1, $2, $3, $4, $5)
-            RETURNING *`,
-            [name, email, job, rate, activeStatus]
-        );
+        // const { rows } = await query(
+        //     `INSERT INTO clients_table (name, email, job, rate, isactive)
+        //     VALUES ($1, $2, $3, $4, $5)
+        //     RETURNING *`,
+        //     [name, email, job, rate, activeStatus]
+        // );
 
-        return rows[0]; // Retorna o cliente recém-criado
-    }  {
-        
-    }
+        // return rows[0]; // Retorna o cliente recém-criado
+    }  
 
         }catch (error) {
         throw error; // Retorna o erro para ser tratado na UI
@@ -122,25 +120,25 @@ export const updateClient = async(clientId, clientData) => {
         } else{
 
         // Verifica se o email já existe para outro cliente (mas não para o cliente atual)
-        const { rows: existingClients } = await query(
-            `SELECT * FROM clients_table WHERE email = $1 AND id <> $2`,
-            [email, clientId]
-        );
+        // const { rows: existingClients } = await query(
+        //     `SELECT * FROM clients_table WHERE email = $1 AND id <> $2`,
+        //     [email, clientId]
+        // );
 
         // Se o email já estiver em uso por outro cliente, retorna erro
-        if (existingClients.length > 0) {
-            return res.status(400).json({ message: "Email already exists." });
-        }
+        // if (existingClients.length > 0) {
+        //     return res.status(400).json({ message: "Email already exists." });
+        // }
 
         // Se não houver clientes com o email, ou o email for do próprio cliente, continua a atualização
-        const { rows } = await query(
-            `UPDATE clients_table SET name = $1, email = $2, job = $3, rate = $4, isactive = $5
-            WHERE id = $6
-            RETURNING *`,
-            [name, email, job, rate, isactive, clientId]
-        );
+        // const { rows } = await query(
+        //     `UPDATE clients_table SET name = $1, email = $2, job = $3, rate = $4, isactive = $5
+        //     WHERE id = $6
+        //     RETURNING *`,
+        //     [name, email, job, rate, isactive, clientId]
+        // );
 
-        return rows[0]; // Retorna o cliente atualizado
+        // return rows[0]; // Retorna o cliente atualizado
         } 
     } catch (error) {
         
@@ -166,20 +164,20 @@ export const deleteClient = async (clientId) => {
         } else{
         
         // Deleta o cliente pelo ID
-        const { rowCount } = await query(
-            `DELETE FROM clients_table WHERE id = $1`, 
-            [clientId]
-        );
+        // const { rowCount } = await query(
+        //     `DELETE FROM clients_table WHERE id = $1`, 
+        //     [clientId]
+        // );
 
         // Se a tabela estiver vazia, resetamos a sequência de IDs
-        const { rows } = await query(`SELECT COUNT(*) FROM clients_table`);
-        const totalClients = parseInt(rows[0].count, 10);
+        // const { rows } = await query(`SELECT COUNT(*) FROM clients_table`);
+        // const totalClients = parseInt(rows[0].count, 10);
 
-        if (totalClients === 0) {
-            await query(`ALTER SEQUENCE clients_table_id_seq RESTART WITH 1`);
-        }
+        // if (totalClients === 0) {
+        //     await query(`ALTER SEQUENCE clients_table_id_seq RESTART WITH 1`);
+        // }
 
-        return rowCount > 0;
+        // return rowCount > 0;
 
         }
 
@@ -207,13 +205,13 @@ export const searchClients = async (searchTerm) => {
 
      /* Executa a query SQL para procurar clientes pelo nome, email ou cargo usando
     ILIKE (insensível a maiúsculas/minúsculas) */
-    const {rows} = await  query(
-    `SELECT * FROM clients_table WHERE name ILIKE $1 OR email ILIKE $1 OR job ILIKE $1`,
-    [`%${searchTerm}%`] // Usa "%" para buscar qualquer correspondência parcial
-    )
+    // const {rows} = await  query(
+    // `SELECT * FROM clients_table WHERE name ILIKE $1 OR email ILIKE $1 OR job ILIKE $1`,
+    // [`%${searchTerm}%`] // Usa "%" para buscar qualquer correspondência parcial
+    // )
 
     // Retorna os clientes encontrados
-    return rows;
+    // return rows;
     
     }  
         
