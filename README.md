@@ -6,11 +6,16 @@ Este é um projeto de CRUD (Create, Read, Update, Delete) de clientes desenvolvi
 
 ## Funcionalidades 🛠️
 
-✅ Cadastro de clientes <br>
-✅ Listagem de clientes
+✅ Cadastro de clientes 
+
+✅ Listagem de clientes 
+
 ✅ Atualização de informações do cliente
+
 ✅ Exclusão de clientes
+
 ✅ Filtro de pesquisa por nome, e-mail ou cargo
+
 ✅ Botões para rolar rapidamente para o topo e o final da página
 
 ## Tecnologias Utilizadas ⚙️
