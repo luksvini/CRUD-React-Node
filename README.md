@@ -58,9 +58,3 @@ Aqui, o usuário pode cadastrar um novo cliente preenchendo os campos obrigatór
 <img src = "https://github.com/user-attachments/assets/aa46da9e-16a5-4a78-96de-bafc69c779ca8"
 width = "700"/>
 
-
-### Previsão de 5 Dias
-
-Esta tela exibe a previsão do tempo para os próximos 5 dias, com as temperaturas mínimas e máximas de cada dia.
-
-![Previsão de 5 Dias](./assets/screenshots/previsao-5dias.png)
