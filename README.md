@@ -23,18 +23,24 @@ Este é um projeto de CRUD (Create, Read, Update, Delete) de clientes desenvolvi
 
 ## Capturas de Tela 📸
 
-### Tela Inicial
+### 🏠 Tela Inicial
 
 Aqui, os clientes cadastrados são exibidos em uma tabela, permitindo edição e exclusão.
 
 ![Tela Inicial](https://github.com/user-attachments/assets/6eec12f1-735d-420e-b588-70dfaafe3e09)
 
 
-### Previsão do Tempo Atual
+### 🔍 Pesquisa de Clientes
+Filtragem rápida por nome, e-mail ou cargo.
 
-Aqui está a exibição da previsão do tempo para a cidade pesquisada, mostrando informações como temperatura, sensação térmica, umidade e mais.
+![Pesquisa de clientes]([./assets/screenshots/previsao-atual.png](https://github.com/user-attachments/assets/32d88baa-0d79-437b-a6a5-550e866ffa63))
 
-![Previsão do Tempo Atual](./assets/screenshots/previsao-atual.png)
+
+### 📑 Formulário de Cadastro
+Aqui, o usuário pode cadastrar um novo cliente preenchendo os campos obrigatórios.
+![Cadastro de clientes]
+
+
 
 ### Previsão de 5 Dias
 
