@@ -6,7 +6,7 @@ Este é um projeto de CRUD (Create, Read, Update, Delete) de clientes desenvolvi
 
 ## Funcionalidades 🛠️
 
-✅ Cadastro de clientes
+✅ Cadastro de clientes <br>
 ✅ Listagem de clientes
 ✅ Atualização de informações do cliente
 ✅ Exclusão de clientes
